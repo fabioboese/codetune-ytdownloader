@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/YTDownloader/.vs/YTDownloader
+/src/YTDownloader/packages
+/src/YTDownloader/YTDownloader/bin/Debug
