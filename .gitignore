@@ -4,4 +4,6 @@
 
 /src/YTDownloader/.vs/YTDownloader
 /src/YTDownloader/packages
-/src/YTDownloader/YTDownloader/bin/Debug
+/src/YTDownloader/YTDownloader/bin/
+/src/YTDownloader/YTDownloader/obj/
+*.user
