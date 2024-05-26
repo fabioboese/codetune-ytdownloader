@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>E66F65A92128824742869CC3D175EC6D2A9E34E6</ManifestCertificateThumbprint>
@@ -59,10 +59,19 @@
     <ManifestKeyFile>YTDownloader_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>youtube %281%29 - Copy-r24x24.ico</ApplicationIcon>
+    <ApplicationIcon>ytDownloader.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=1.0.7.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
@@ -245,6 +254,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xabe.FFmpeg, Version=5.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xabe.FFmpeg.5.2.6\lib\netstandard2.0\Xabe.FFmpeg.dll</HintPath>
+    </Reference>
     <Reference Include="YoutubeExplode, Version=6.3.13.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YoutubeExplode.6.3.13\lib\net461\YoutubeExplode.dll</HintPath>
     </Reference>
@@ -272,6 +284,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -308,7 +321,10 @@
     <None Include="Resources\download-solid %281%29-h24.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="youtube %281%29 - Copy-r24x24.ico" />
+    <Content Include="depend\ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ytDownloader.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

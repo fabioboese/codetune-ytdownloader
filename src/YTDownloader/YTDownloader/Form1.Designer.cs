@@ -35,12 +35,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtLog = new System.Windows.Forms.TextBox();
             this.btnDownloadSlow = new System.Windows.Forms.Button();
             this.btnDownloadFast = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtLog = new System.Windows.Forms.TextBox();
+            this.rdbVideoOnly = new System.Windows.Forms.RadioButton();
+            this.rdbVideoAndAudio = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkErrorLogLevel = new System.Windows.Forms.CheckBox();
+            this.chkInfoLogLevel = new System.Windows.Forms.CheckBox();
+            this.chkTraceLogLevel = new System.Windows.Forms.CheckBox();
+            this.lklCleanLogs = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +66,7 @@
             this.txtLink.Location = new System.Drawing.Point(59, 14);
             this.txtLink.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(670, 26);
+            this.txtLink.Size = new System.Drawing.Size(820, 26);
             this.txtLink.TabIndex = 3;
             this.txtLink.TextChanged += new System.EventHandler(this.txtLink_TextChanged);
             // 
@@ -72,7 +78,7 @@
             this.txtId.Location = new System.Drawing.Point(59, 50);
             this.txtId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(232, 26);
+            this.txtId.Size = new System.Drawing.Size(329, 26);
             this.txtId.TabIndex = 3;
             this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
@@ -90,19 +96,22 @@
             // pbProgress
             // 
             this.pbProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pbProgress.Location = new System.Drawing.Point(0, 249);
+            this.pbProgress.Location = new System.Drawing.Point(0, 413);
             this.pbProgress.MarqueeAnimationSpeed = 5;
             this.pbProgress.Name = "pbProgress";
-            this.pbProgress.Size = new System.Drawing.Size(844, 12);
+            this.pbProgress.Size = new System.Drawing.Size(892, 12);
             this.pbProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pbProgress.TabIndex = 4;
             this.pbProgress.Visible = false;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lklCleanLogs);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.rdbVideoAndAudio);
+            this.panel1.Controls.Add(this.rdbVideoOnly);
             this.panel1.Controls.Add(this.btnDownloadSlow);
             this.panel1.Controls.Add(this.btnDownloadFast);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.txtId);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtLink);
@@ -110,31 +119,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(844, 105);
+            this.panel1.Size = new System.Drawing.Size(892, 162);
             this.panel1.TabIndex = 5;
-            // 
-            // txtLog
-            // 
-            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLog.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLog.Location = new System.Drawing.Point(0, 105);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ReadOnly = true;
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(844, 144);
-            this.txtLog.TabIndex = 6;
-            this.txtLog.WordWrap = false;
             // 
             // btnDownloadSlow
             // 
             this.btnDownloadSlow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownloadSlow.Enabled = false;
             this.btnDownloadSlow.Image = global::YTDownloader.Properties.Resources.download_solid__1__h24;
-            this.btnDownloadSlow.Location = new System.Drawing.Point(541, 50);
+            this.btnDownloadSlow.Location = new System.Drawing.Point(592, 50);
             this.btnDownloadSlow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDownloadSlow.Name = "btnDownloadSlow";
-            this.btnDownloadSlow.Size = new System.Drawing.Size(188, 46);
+            this.btnDownloadSlow.Size = new System.Drawing.Size(188, 103);
             this.btnDownloadSlow.TabIndex = 0;
             this.btnDownloadSlow.Text = "Baixar (lento)";
             this.btnDownloadSlow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -147,10 +143,10 @@
             this.btnDownloadFast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownloadFast.Enabled = false;
             this.btnDownloadFast.Image = global::YTDownloader.Properties.Resources.download_solid_h24;
-            this.btnDownloadFast.Location = new System.Drawing.Point(345, 50);
+            this.btnDownloadFast.Location = new System.Drawing.Point(396, 50);
             this.btnDownloadFast.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDownloadFast.Name = "btnDownloadFast";
-            this.btnDownloadFast.Size = new System.Drawing.Size(188, 46);
+            this.btnDownloadFast.Size = new System.Drawing.Size(188, 103);
             this.btnDownloadFast.TabIndex = 0;
             this.btnDownloadFast.Text = "Baixar (rápido)";
             this.btnDownloadFast.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -158,23 +154,105 @@
             this.btnDownloadFast.UseVisualStyleBackColor = true;
             this.btnDownloadFast.Click += new System.EventHandler(this.btnDownloadFast_Click);
             // 
-            // pictureBox1
+            // txtLog
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::YTDownloader.Properties.Resources.gabi;
-            this.pictureBox1.Location = new System.Drawing.Point(737, 3);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(96, 96);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLog.Location = new System.Drawing.Point(0, 162);
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtLog.Size = new System.Drawing.Size(892, 251);
+            this.txtLog.TabIndex = 6;
+            this.txtLog.WordWrap = false;
+            // 
+            // rdbVideoOnly
+            // 
+            this.rdbVideoOnly.AutoSize = true;
+            this.rdbVideoOnly.Location = new System.Drawing.Point(215, 84);
+            this.rdbVideoOnly.Name = "rdbVideoOnly";
+            this.rdbVideoOnly.Size = new System.Drawing.Size(137, 24);
+            this.rdbVideoOnly.TabIndex = 4;
+            this.rdbVideoOnly.Text = "Somente Vídeo";
+            this.rdbVideoOnly.UseVisualStyleBackColor = true;
+            // 
+            // rdbVideoAndAudio
+            // 
+            this.rdbVideoAndAudio.AutoSize = true;
+            this.rdbVideoAndAudio.Checked = true;
+            this.rdbVideoAndAudio.Location = new System.Drawing.Point(59, 84);
+            this.rdbVideoAndAudio.Name = "rdbVideoAndAudio";
+            this.rdbVideoAndAudio.Size = new System.Drawing.Size(126, 24);
+            this.rdbVideoAndAudio.TabIndex = 4;
+            this.rdbVideoAndAudio.TabStop = true;
+            this.rdbVideoAndAudio.Text = "Vídeo e Áudio";
+            this.rdbVideoAndAudio.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkTraceLogLevel);
+            this.groupBox1.Controls.Add(this.chkInfoLogLevel);
+            this.groupBox1.Controls.Add(this.chkErrorLogLevel);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(787, 54);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(92, 99);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Nível de Log";
+            // 
+            // chkErrorLogLevel
+            // 
+            this.chkErrorLogLevel.AutoSize = true;
+            this.chkErrorLogLevel.Checked = true;
+            this.chkErrorLogLevel.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkErrorLogLevel.Location = new System.Drawing.Point(6, 20);
+            this.chkErrorLogLevel.Name = "chkErrorLogLevel";
+            this.chkErrorLogLevel.Size = new System.Drawing.Size(70, 19);
+            this.chkErrorLogLevel.TabIndex = 0;
+            this.chkErrorLogLevel.Text = "ERROR";
+            this.chkErrorLogLevel.UseVisualStyleBackColor = true;
+            // 
+            // chkInfoLogLevel
+            // 
+            this.chkInfoLogLevel.AutoSize = true;
+            this.chkInfoLogLevel.Checked = true;
+            this.chkInfoLogLevel.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInfoLogLevel.Location = new System.Drawing.Point(6, 45);
+            this.chkInfoLogLevel.Name = "chkInfoLogLevel";
+            this.chkInfoLogLevel.Size = new System.Drawing.Size(54, 19);
+            this.chkInfoLogLevel.TabIndex = 0;
+            this.chkInfoLogLevel.Text = "INFO";
+            this.chkInfoLogLevel.UseVisualStyleBackColor = true;
+            // 
+            // chkTraceLogLevel
+            // 
+            this.chkTraceLogLevel.AutoSize = true;
+            this.chkTraceLogLevel.Location = new System.Drawing.Point(6, 70);
+            this.chkTraceLogLevel.Name = "chkTraceLogLevel";
+            this.chkTraceLogLevel.Size = new System.Drawing.Size(65, 19);
+            this.chkTraceLogLevel.TabIndex = 0;
+            this.chkTraceLogLevel.Text = "TRACE";
+            this.chkTraceLogLevel.UseVisualStyleBackColor = true;
+            // 
+            // lklCleanLogs
+            // 
+            this.lklCleanLogs.AutoSize = true;
+            this.lklCleanLogs.Location = new System.Drawing.Point(9, 139);
+            this.lklCleanLogs.Name = "lklCleanLogs";
+            this.lklCleanLogs.Size = new System.Drawing.Size(96, 20);
+            this.lklCleanLogs.TabIndex = 6;
+            this.lklCleanLogs.TabStop = true;
+            this.lklCleanLogs.Text = "Limpar Logs";
+            this.lklCleanLogs.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCleanLogs_LinkClicked);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 261);
+            this.ClientSize = new System.Drawing.Size(892, 425);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.pbProgress);
             this.Controls.Add(this.panel1);
@@ -183,10 +261,11 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "GABI YT Downloader";
+            this.Text = "YT Downloader";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,7 +274,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnDownloadFast;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLink;
         private System.Windows.Forms.TextBox txtId;
@@ -204,6 +282,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Button btnDownloadSlow;
+        private System.Windows.Forms.RadioButton rdbVideoAndAudio;
+        private System.Windows.Forms.RadioButton rdbVideoOnly;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkTraceLogLevel;
+        private System.Windows.Forms.CheckBox chkInfoLogLevel;
+        private System.Windows.Forms.CheckBox chkErrorLogLevel;
+        private System.Windows.Forms.LinkLabel lklCleanLogs;
     }
 }
 
