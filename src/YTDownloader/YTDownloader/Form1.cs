@@ -21,7 +21,8 @@ namespace YTDownloader
     public partial class Form1 : Form
     {
         private bool busy = false;
-        private string destinationFile = string.Empty;
+        private string videoDestinationFile = string.Empty;
+        private string audioDestinationFile = string.Empty; 
 
         private bool audioSuccess = false;
         private bool videoSuccess = false;
@@ -42,7 +43,7 @@ namespace YTDownloader
                 var youTube = YouTube.Default;
                 var video = youTube.GetVideo(VideoUrl);
 
-                System.IO.File.WriteAllBytes(destinationFile, video.GetBytes());
+                System.IO.File.WriteAllBytes(videoDestinationFile, video.GetBytes());
                 videoSuccess = true;
             }
             catch (Exception ex)
@@ -69,7 +70,7 @@ namespace YTDownloader
                     var stream = httpClient.GetStreamAsync(streamInfo.Url).GetAwaiter().GetResult();
                     var datetime = DateTime.Now;
 
-                    using (var outputStream = File.Create(destinationFile))
+                    using (var outputStream = File.Create(videoDestinationFile))
                     {
                         stream.CopyToAsync(outputStream).GetAwaiter().GetResult();
                     }
@@ -90,8 +91,7 @@ namespace YTDownloader
             try
             {
                 LogProgress("Extraindo o áudio do vídeo");
-                var inputFile = destinationFile;
-                var outputFile = Path.ChangeExtension(destinationFile, "mp3");
+                audioDestinationFile = Path.ChangeExtension(destinationFile, "mp3");
                 var mp3out = "";
                 var ffmpegProcess = new Process();
                 ffmpegProcess.StartInfo.UseShellExecute = false;
@@ -100,7 +100,7 @@ namespace YTDownloader
                 ffmpegProcess.StartInfo.RedirectStandardError = true;
                 ffmpegProcess.StartInfo.CreateNoWindow = true;
                 ffmpegProcess.StartInfo.FileName = "depend\\ffmpeg.exe";
-                ffmpegProcess.StartInfo.Arguments = " -i \"" + inputFile + "\" -vn -f mp3 -ab 320k output \"" + outputFile + "\" -y";
+                ffmpegProcess.StartInfo.Arguments = " -i \"" + videoDestinationFile + "\" -vn -f mp3 -ab 320k output \"" + audioDestinationFile + "\" -y";
                 var cmd = ffmpegProcess.StartInfo.FileName + " " + ffmpegProcess.StartInfo.Arguments;   
                 ffmpegProcess.Start();
                 mp3out = ffmpegProcess.StandardError.ReadToEnd();
@@ -158,7 +158,7 @@ namespace YTDownloader
             sfd.Filter = "AVI Files|*.avi";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                destinationFile = sfd.FileName;
+                videoDestinationFile = sfd.FileName;
                 return true;
             }
             else
@@ -168,7 +168,7 @@ namespace YTDownloader
         private void ShowDownloadResults()
         {
             if (videoSuccess)
-                LogProgress($"Download concluído com sucesso para o arquivo {destinationFile}");
+                LogProgress($"Download concluído com sucesso para o arquivo {videoDestinationFile}");
             else
             {
                 if (downloadException != null)
@@ -183,7 +183,7 @@ namespace YTDownloader
             {
                 foreach(var trace in audioConversionTrace)
                     LogTrace(trace);
-                LogProgress($"Conversão do áudio concluída com sucesso para o arquivo {destinationFile}");
+                LogProgress($"Conversão do áudio concluída com sucesso para o arquivo {audioDestinationFile}");
             }
             else
             {
@@ -195,7 +195,7 @@ namespace YTDownloader
 
         private void RunDownloadInBackground(ThreadStart downloadAction)
         {
-            LogProgress($"Realizando o download do vídeo para o arquivo {destinationFile}");
+            LogProgress($"Realizando o download do vídeo para o arquivo {videoDestinationFile}");
             var thread = new Thread(downloadAction);
             thread.Start();
             while (busy)
@@ -247,7 +247,7 @@ namespace YTDownloader
                 ShowDownloadResults();
                 if (rdbVideoAndAudio.Checked)
                 {
-                    TryExtractAudio(destinationFile);
+                    TryExtractAudio(videoDestinationFile);
                     ShowAudioConversionResults();
                 }
                 SetIdleView();

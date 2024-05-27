@@ -7,3 +7,7 @@
 /src/YTDownloader/YTDownloader/bin/
 /src/YTDownloader/YTDownloader/obj/
 *.user
+/src/YTDownloader/YTDownloaderSetup/Debug
+/src/YTDownloader/YTDownloaderSetup/Release
+/src/YTDownloader/YTDownloaderNsisSetup/YouTubeDownloaderSetup.exe
+/.vs
