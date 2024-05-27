@@ -181,7 +181,7 @@ SectionEnd
 
 Section
   SetShellVarContext all
-  CreateShortCut "$DESKTOP\Icon.lnk" "$INSTDIR\YTDownloader.exe"
+  CreateShortCut "$DESKTOP\YouTube Downloader.lnk" "$INSTDIR\YTDownloader.exe"
   SetShellVarContext current
 SectionEnd
 
